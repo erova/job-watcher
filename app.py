@@ -79,7 +79,8 @@ if os.path.exists("logs.json"):
     runs = [l for l in logs if l["type"] == "run"]
     clicks = [l for l in logs if l["type"] == "click"]
 
-    st.markdown(f"**Total Searches Run:** {len(runs)}  
+    st.markdown(f"**Total Searches Run:** {len(runs)}  \n**Total Job Link Clicks:** {len(clicks)}")
+
 **Total Job Link Clicks:** {len(clicks)}")
 
     top_companies = Counter(c["details"].get("company") for c in clicks if "company" in c["details"])
