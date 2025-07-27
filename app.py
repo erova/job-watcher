@@ -79,18 +79,15 @@ if os.path.exists("logs.json"):
     runs = [l for l in logs if l["type"] == "run"]
     clicks = [l for l in logs if l["type"] == "click"]
 
-st.markdown(f"""
+    st.markdown(f"""
 **Total Searches Run:** {len(runs)}  
 **Total Job Link Clicks:** {len(clicks)}
 """)
 
-    top_companies = Counter(c["details"].get("company") for c in clicks if "company" in c["details"])
+    top_companies = Counter(
+        c["details"].get("company") for c in clicks if "company" in c["details"]
+    )
     if top_companies:
         st.markdown("**Top Clicked Companies:**")
         for name, count in top_companies.most_common(5):
             st.markdown(f"- {name}: {count} clicks")
-
-    st.markdown("**Full Activity Log:**")
-    st.json(logs[-20:])
-else:
-    st.info("No logs yet.")
