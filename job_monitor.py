@@ -48,6 +48,8 @@ def log_run(query):
 def run_monitor(companies, keywords, locations):
     matches = []
     for company in companies:
+        if not isinstance(company, dict):
+            continue  # Skip malformed entries
         source = company.get("source")
         slug = company.get("slug")
         jobs = []
